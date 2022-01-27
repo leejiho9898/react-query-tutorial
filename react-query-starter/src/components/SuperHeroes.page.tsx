@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Hero } from "type/type";
 
 export const SuperHeroesPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState<
-    { id: number; name: string; alterEgo: string }[]
-  >([]);
+  const [data, setData] = useState<Hero[]>([]);
   console.log(isLoading);
 
   useEffect(() => {
@@ -15,7 +14,8 @@ export const SuperHeroesPage = () => {
       console.log(isLoading);
       console.log(data);
     });
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
