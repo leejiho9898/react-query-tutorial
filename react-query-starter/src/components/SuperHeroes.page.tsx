@@ -3,12 +3,17 @@ import axios from "axios";
 
 export const SuperHeroesPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<
+    { id: number; name: string; alterEgo: string }[]
+  >([]);
+  console.log(isLoading);
 
   useEffect(() => {
     axios.get("http://localhost:4000/superheroes").then((res) => {
       setData(res.data);
       setIsLoading(false);
+      console.log(isLoading);
+      console.log(data);
     });
   }, []);
 
