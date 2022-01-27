@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Link } from "react-router-dom";
 import Routing from "routes/Routing";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         </ul>
       </nav>
       <Routing />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
