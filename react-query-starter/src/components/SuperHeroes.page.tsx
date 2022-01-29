@@ -5,14 +5,11 @@ import { Hero } from "type/type";
 export const SuperHeroesPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<Hero[]>([]);
-  console.log(isLoading);
 
   useEffect(() => {
     axios.get("http://localhost:4000/superheroes").then((res) => {
       setData(res.data);
       setIsLoading(false);
-      console.log(isLoading);
-      console.log(data);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
