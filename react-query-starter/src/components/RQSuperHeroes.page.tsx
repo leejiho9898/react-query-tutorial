@@ -1,25 +1,30 @@
 import axios from "axios";
-import { useState } from "react";
 import { useQuery } from "react-query";
 import { Hero } from "type/type";
 
 const fetchSuperHeros = async () => {
   const response = await axios.get("http://localhost:4000/superheroes");
-  // const response = await axios.get("http://localhost:4000/superheroes?pageNo=1");
   return response.data;
 };
 
 export const RQSuperHeroesPage = () => {
-  const [count, setCount] = useState(0);
+  const onSuccess = (data: Hero[]) => {
+    console.log("데이터 fetching 이 성공한 이후에 실행되는 Perform", data);
+  };
+
+  const onError = (error: Error) => {
+    console.log("데이터 fetching이 실패한 이후에 실행되는 Perform", error);
+  };
+
   const { isLoading, data, error, isFetching } = useQuery<Hero[], Error>(
-    ["super-heros", count, "가격높은순"],
+    "super-heros",
     fetchSuperHeros,
-    { staleTime: 20000 }
+    { onSuccess, onError }
   );
 
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching);
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
   }
 
@@ -29,9 +34,8 @@ export const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>Super Heroes Page</h2>
+
       {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)}
-      <button onClick={() => setCount(count + 1)}>상태+</button>
-      <button onClick={() => setCount(count - 1)}>상태-</button>
     </>
   );
 };
@@ -48,3 +52,5 @@ export const RQSuperHeroesPage = () => {
 
 //refetchInterval : 실시간 데이터 fetch나 주식같이 초단위로 fetch 해야하는 경우 사용
 //refetchIntervalBackground : 백그라운드에서도 초단위로 refetch
+//enabled : false면 fetch하지 않음 but, refetch 함수가 실행되면 fetch됨
+//onSuccess : 성공할시 실행할 함수, onError: 실패할시 실행할 함수
