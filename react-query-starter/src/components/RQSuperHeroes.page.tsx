@@ -1,11 +1,5 @@
-import axios from "axios";
-import { useQuery } from "react-query";
+import useSuperHeroData from "hooks/useSuperHeroData";
 import { Hero } from "type/type";
-
-const fetchSuperHeros = async () => {
-  const response = await axios.get("http://localhost:4000/superheroes");
-  return response.data;
-};
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data: Hero[]) => {
@@ -16,20 +10,10 @@ export const RQSuperHeroesPage = () => {
     console.log("데이터 fetching이 실패한 이후에 실행되는 Perform", error);
   };
 
-  const { isLoading, data, error, isFetching } = useQuery<Hero[], Error>(
-    "super-heros",
-    fetchSuperHeros,
-    {
-      onSuccess,
-      onError,
-      select: (data: Hero[]) => {
-        console.log(data);
-        const superHeroNames = data.map((hero: any) => hero.id);
-        return superHeroNames;
-      },
-    }
+  const { isLoading, data, error, isFetching } = useSuperHeroData(
+    onSuccess,
+    onError
   );
-
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching);
 
   if (isLoading || isFetching) {
@@ -45,10 +29,7 @@ export const RQSuperHeroesPage = () => {
 
       {/* {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)} */}
       {data?.map((heroName) => (
-        <div>
-          {heroName}
-          {console.log(heroName)}
-        </div>
+        <div>{heroName}</div>
       ))}
     </>
   );
