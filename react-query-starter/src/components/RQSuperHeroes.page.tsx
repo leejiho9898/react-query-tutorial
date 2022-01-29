@@ -19,7 +19,15 @@ export const RQSuperHeroesPage = () => {
   const { isLoading, data, error, isFetching } = useQuery<Hero[], Error>(
     "super-heros",
     fetchSuperHeros,
-    { onSuccess, onError }
+    {
+      onSuccess,
+      onError,
+      select: (data: Hero[]) => {
+        console.log(data);
+        const superHeroNames = data.map((hero: any) => hero.id);
+        return superHeroNames;
+      },
+    }
   );
 
   console.log("isLoading : ", isLoading, "isFetching : ", isFetching);
@@ -35,7 +43,13 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>Super Heroes Page</h2>
 
-      {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)}
+      {/* {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)} */}
+      {data?.map((heroName) => (
+        <div>
+          {heroName}
+          {console.log(heroName)}
+        </div>
+      ))}
     </>
   );
 };
@@ -54,3 +68,4 @@ export const RQSuperHeroesPage = () => {
 //refetchIntervalBackground : 백그라운드에서도 초단위로 refetch
 //enabled : false면 fetch하지 않음 but, refetch 함수가 실행되면 fetch됨
 //onSuccess : 성공할시 실행할 함수, onError: 실패할시 실행할 함수
+//select : 데이터를 받고나서 가공한다음에 뿌려주는 역할
