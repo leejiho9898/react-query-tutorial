@@ -2,7 +2,7 @@ import useSuperHeroesData from "hooks/useHeroesData";
 import { Link } from "react-router-dom";
 import { Hero } from "type/type";
 
-export const RQSuperHeroesPage = () => {
+export default function RQSuperHeroesPage  ()  {
   const onSuccess = (data: Hero[]) => {
     console.log("데이터 fetching 이 성공한 이후에 실행되는 Perform", data);
   };
@@ -30,7 +30,7 @@ export const RQSuperHeroesPage = () => {
 
       {/* {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)} */}
       {data?.map((hero) => (
-        <div>
+        <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
         </div>
       ))}
