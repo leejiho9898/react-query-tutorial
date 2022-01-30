@@ -1,4 +1,5 @@
-import useSuperHeroData from "hooks/useSuperHeroData";
+import useSuperHeroesData from "hooks/useHeroesData";
+import { Link } from "react-router-dom";
 import { Hero } from "type/type";
 
 export const RQSuperHeroesPage = () => {
@@ -10,7 +11,7 @@ export const RQSuperHeroesPage = () => {
     console.log("데이터 fetching이 실패한 이후에 실행되는 Perform", error);
   };
 
-  const { isLoading, data, error, isFetching } = useSuperHeroData(
+  const { isLoading, data, error, isFetching } = useSuperHeroesData(
     onSuccess,
     onError
   );
@@ -28,8 +29,10 @@ export const RQSuperHeroesPage = () => {
       <h2>Super Heroes Page</h2>
 
       {/* {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)} */}
-      {data?.map((heroName) => (
-        <div>{heroName}</div>
+      {data?.map((hero) => (
+        <div>
+          <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
+        </div>
       ))}
     </>
   );
