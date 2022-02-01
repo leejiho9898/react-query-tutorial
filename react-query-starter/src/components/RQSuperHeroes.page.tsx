@@ -28,7 +28,6 @@ export default function RQSuperHeroesPage  ()  {
     <>
       <h2>Super Heroes Page</h2>
 
-      {/* {data && data.map((hero) => <div key={hero.name}>{hero.name}</div>)} */}
       {data?.map((hero) => (
         <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
