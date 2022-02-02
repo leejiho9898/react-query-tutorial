@@ -1,5 +1,4 @@
 import useSuperHeroData from "hooks/useHeroData";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 interface IParams {
