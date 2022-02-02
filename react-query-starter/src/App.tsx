@@ -24,6 +24,9 @@ function App() {
           <li>
             <Link to={Path.ParallelQueruesPage}>Parallel Querues Page</Link>
           </li>
+          <li>
+            <Link to={Path.RQDynamicParallelPage}>Parallel Querues Page</Link>
+          </li>
         </ul>
       </nav>
       <Routing />

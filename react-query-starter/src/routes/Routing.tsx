@@ -1,3 +1,4 @@
+import DynamicParallelPage from "components/DynamicParallel.page";
 import { HomePage } from "components/Home.page";
 import { ParallelQueriesPage } from "components/ParallelQueries.page";
 import RQSuperHeroPage from "components/RQSuperHero.page";
@@ -16,6 +17,10 @@ function Routing() {
       <Route
         path={Path.ParallelQueruesPage}
         element={<ParallelQueriesPage />}
+      />
+      <Route
+        path={Path.RQDynamicParallelPage}
+        element={<DynamicParallelPage heroIds={[1, 3]} />}
       />
     </Routes>
   );
