@@ -1,3 +1,4 @@
+import DependentQueriesPage from "components/DependentQueries.page";
 import DynamicParallelPage from "components/DynamicParallel.page";
 import { HomePage } from "components/Home.page";
 import { ParallelQueriesPage } from "components/ParallelQueries.page";
@@ -21,6 +22,10 @@ function Routing() {
       <Route
         path={Path.RQDynamicParallelPage}
         element={<DynamicParallelPage heroIds={[1, 3]} />}
+      />
+      <Route
+        path={Path.DependentQueriesPage}
+        element={<DependentQueriesPage eamil="email@email.com" />}
       />
     </Routes>
   );
