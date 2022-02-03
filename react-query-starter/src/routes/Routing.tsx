@@ -25,7 +25,7 @@ function Routing() {
       />
       <Route
         path={Path.DependentQueriesPage}
-        element={<DependentQueriesPage eamil="email@email.com" />}
+        element={<DependentQueriesPage email="email@email.com" />}
       />
     </Routes>
   );
