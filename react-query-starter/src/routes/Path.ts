@@ -7,6 +7,7 @@ enum Path {
   RQDynamicParallelPage = "/rq-dynamic-parallel",
   DependentQueriesPage = "/rq-dependent",
   PagenatedQueriesPage = "/rq-pagenated",
+  InfiniteQueriesPage = "/rq-infinite",
 }
 
 export default Path;

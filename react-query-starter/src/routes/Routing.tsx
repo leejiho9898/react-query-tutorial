@@ -1,6 +1,7 @@
 import DependentQueriesPage from "components/DependentQueries.page";
 import DynamicParallelPage from "components/DynamicParallel.page";
 import { HomePage } from "components/Home.page";
+import { InfiniteQueriesPage } from "components/InfiniteQueries.page";
 import { PaginatedQueriesPage } from "components/PagenatedQueries.page";
 import { ParallelQueriesPage } from "components/ParallelQueries.page";
 import RQSuperHeroPage from "components/RQSuperHero.page";
@@ -31,6 +32,10 @@ function Routing() {
       <Route
         path={Path.PagenatedQueriesPage}
         element={<PaginatedQueriesPage />}
+      />
+      <Route
+        path={Path.InfiniteQueriesPage}
+        element={<InfiniteQueriesPage />}
       />
     </Routes>
   );
