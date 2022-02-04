@@ -5,7 +5,7 @@ import { Color } from "type/type";
 
 const fetchColors = async ({ pageParam = 1 }) => {
   const response = await axios.get(
-    `http://localhost:4000/colors?_limit=2&_page=${pageParam}`
+    `http://localhost:4000/colors?_limit=4&_page=${pageParam}`
   );
   return response.data;
 };
@@ -23,7 +23,9 @@ export const InfiniteQueriesPage = () => {
     isFetchingNextPage,
   } = useInfiniteQuery<Color[], Error>(["colors"], fetchColors, {
     getNextPageParam: (_lastPage, pages) => {
+        //fetchColors 의 props인 pageParam를 결정하는 함수
       if (pages.length < 4) {
+          //하드코딩 했지만 api에서 값을 받아야함
         return pages.length + 1;
       } else {
         return undefined;
@@ -38,19 +40,19 @@ export const InfiniteQueriesPage = () => {
   if (isError) {
     return <h2>{error?.message}</h2>;
   }
-
+  console.log(data);
   return (
     <>
       <div>
         {data?.pages.map((group, i) => {
           return (
-            <Fragment key={i}>
+            <div key={i}>
               {group.map((color) => (
                 <h2 key={color.id}>
                   {color.id} {color.label}
                 </h2>
               ))}
-            </Fragment>
+            </div>
           );
         })}
       </div>
