@@ -21,9 +21,13 @@ const useSuperHeroData = (heroId: string) => {
       const hero = queryClient
         .getQueryData<Hero[]>("super-heroes")
         ?.find((hero) => hero.id === parseInt(heroId));
-      return { data: hero };
-    // 다른 쿼리의 캐쉬된 결과에서 해당 쿼리의 초기 데이터를  가져옴
-    // 여기서는 super-heroes의 캐싱된 결과로 초기값을 설정해 Loading을 없엤음
+      if (hero) {
+        return { data: hero };
+      } else {
+        return undefined;
+      }
+      // 다른 쿼리의 캐쉬된 결과에서 해당 쿼리의 초기 데이터를  가져옴
+      // 여기서는 super-heroes의 캐싱된 결과로 초기값을 설정해 Loading을 없엤음
     },
   });
 };
