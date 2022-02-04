@@ -21,7 +21,7 @@ function Routing() {
       />
       <Route
         path={Path.RQDynamicParallelPage}
-        element={<DynamicParallelPage heroIds={[1, 3]} />}
+        element={<DynamicParallelPage heroIds={[1, 2, 3]} />}
       />
       <Route
         path={Path.DependentQueriesPage}

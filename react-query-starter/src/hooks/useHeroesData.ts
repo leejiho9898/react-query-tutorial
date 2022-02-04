@@ -6,7 +6,7 @@ const fetchSuperHeros = async () => {
   return response.data;
 };
 const useSuperHeroesData = (onSuccess: any, onError: any) => {
-  return useQuery<Hero[], Error>("super-heros", fetchSuperHeros, {
+  return useQuery<Hero[], Error>("super-heroes", fetchSuperHeros, {
     onSuccess,
     onError,
     staleTime: 5 * 60 * 1000,
