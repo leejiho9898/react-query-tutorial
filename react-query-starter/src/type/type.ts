@@ -3,3 +3,8 @@ export interface Hero {
   name: string;
   alterEgo: string;
 }
+
+export interface Color {
+  id: number;
+  label: string;
+}

@@ -1,6 +1,7 @@
 import DependentQueriesPage from "components/DependentQueries.page";
 import DynamicParallelPage from "components/DynamicParallel.page";
 import { HomePage } from "components/Home.page";
+import { PaginatedQueriesPage } from "components/PagenatedQueries.page";
 import { ParallelQueriesPage } from "components/ParallelQueries.page";
 import RQSuperHeroPage from "components/RQSuperHero.page";
 import RQSuperHeroesPage from "components/RQSuperHeroes.page";
@@ -26,6 +27,10 @@ function Routing() {
       <Route
         path={Path.DependentQueriesPage}
         element={<DependentQueriesPage email="email@email.com" />}
+      />
+      <Route
+        path={Path.PagenatedQueriesPage}
+        element={<PaginatedQueriesPage />}
       />
     </Routes>
   );
