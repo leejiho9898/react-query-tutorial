@@ -50,7 +50,7 @@ export default function RQSuperHeroesPage() {
         />
         <button onClick={handleAddHeroClick}>Add Hero</button>
       </div>
-      <button onClick={() => refetch}>Fetch heroes</button>
+      <button onClick={() => refetch()}>Fetch heroes</button>
       {data?.map((hero) => (
         <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
