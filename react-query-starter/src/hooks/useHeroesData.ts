@@ -1,11 +1,16 @@
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Hero } from "type/type";
 const fetchSuperHeros = async () => {
   const response = await axios.get("http://localhost:4000/superheroes");
   return response.data;
 };
-const useSuperHeroesData = (onSuccess: any, onError: any) => {
+
+const addSuperHero = async (hero: Hero) => {
+  const response = await axios.post("http://localhost:4000/superheroes", hero);
+  return response.data;
+};
+export const useSuperHeroesData = (onSuccess: any, onError: any) => {
   return useQuery<Hero[], Error>("super-heroes", fetchSuperHeros, {
     onSuccess,
     onError,
@@ -19,4 +24,6 @@ const useSuperHeroesData = (onSuccess: any, onError: any) => {
   });
 };
 
-export default useSuperHeroesData;
+export const useAddSuperHeroesData = () => {
+  return useMutation(addSuperHero);
+};

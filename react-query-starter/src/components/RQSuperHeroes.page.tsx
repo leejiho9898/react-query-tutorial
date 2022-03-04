@@ -1,8 +1,11 @@
-import useSuperHeroesData from "hooks/useHeroesData";
+import { useAddSuperHeroesData, useSuperHeroesData } from "hooks/useHeroesData";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Hero } from "type/type";
 
-export default function RQSuperHeroesPage  ()  {
+export default function RQSuperHeroesPage() {
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
   const onSuccess = (data: Hero[]) => {
     console.log("데이터 fetching 이 성공한 이후에 실행되는 Perform", data);
   };
@@ -11,11 +14,18 @@ export default function RQSuperHeroesPage  ()  {
     console.log("데이터 fetching이 실패한 이후에 실행되는 Perform", error);
   };
 
-  const { isLoading, data, error, isFetching } = useSuperHeroesData(
+  const { isLoading, data, error, isFetching, refetch } = useSuperHeroesData(
     onSuccess,
     onError
   );
-  console.log("isLoading : ", isLoading, "isFetching : ", isFetching);
+
+  const { mutate: addHero } = useAddSuperHeroesData();
+
+  const handleAddHeroClick = () => {
+    const hero = { name, alterEgo };
+    console.log(hero);
+    addHero(hero);
+  };
 
   if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
@@ -27,7 +37,20 @@ export default function RQSuperHeroesPage  ()  {
   return (
     <>
       <h2>Super Heroes Page</h2>
-
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={alterEgo}
+          onChange={(e) => setAlterEgo(e.target.value)}
+        />
+        <button onClick={handleAddHeroClick}>Add Hero</button>
+      </div>
+      <button onClick={() => refetch}>Fetch heroes</button>
       {data?.map((hero) => (
         <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
@@ -35,7 +58,7 @@ export default function RQSuperHeroesPage  ()  {
       ))}
     </>
   );
-};
+}
 
 // staleTime :
 // 더 길게 지정하면 staleTime쿼리가 데이터를 자주 다시 가져오지 않습니다.

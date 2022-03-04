@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
+    },
+    {
+      "name": "Flash",
+      "alterEgo": "lee",
+      "id": 4
     }
   ],
   "friends": [
@@ -30,26 +35,74 @@
       "name": "Rachel Green"
     }
   ],
-  "users": [{ "id": "email@email.com", "channelId": "codevolution" }],
+  "users": [
+    {
+      "id": "email@email.com",
+      "channelId": "codevolution"
+    }
+  ],
   "channels": [
     {
       "id": "codevolution",
-      "coures": ["react", "vue", "angular"]
+      "coures": [
+        "react",
+        "vue",
+        "angular"
+      ]
     }
   ],
   "colors": [
-    { "id": 1, "label": "white" },
-    { "id": 2, "label": "black" },
-    { "id": 3, "label": "green" },
-    { "id": 4, "label": "yellow" },
-    { "id": 5, "label": "orange" },
-    { "id": 6, "label": "blue" },
-    { "id": 7, "label": "purple" },
-    { "id": 8, "label": "mint" },
-    { "id": 9, "label": "skyblue" },
-    { "id": 10, "label": "light gray" },
-    { "id": 11, "label": "gray" },
-    { "id": 12, "label": "navy" },
-    { "id": 13, "label": "wine" }
+    {
+      "id": 1,
+      "label": "white"
+    },
+    {
+      "id": 2,
+      "label": "black"
+    },
+    {
+      "id": 3,
+      "label": "green"
+    },
+    {
+      "id": 4,
+      "label": "yellow"
+    },
+    {
+      "id": 5,
+      "label": "orange"
+    },
+    {
+      "id": 6,
+      "label": "blue"
+    },
+    {
+      "id": 7,
+      "label": "purple"
+    },
+    {
+      "id": 8,
+      "label": "mint"
+    },
+    {
+      "id": 9,
+      "label": "skyblue"
+    },
+    {
+      "id": 10,
+      "label": "light gray"
+    },
+    {
+      "id": 11,
+      "label": "gray"
+    },
+    {
+      "id": 12,
+      "label": "navy"
+    },
+    {
+      "id": 13,
+      "label": "wine"
+    }
   ]
 }
