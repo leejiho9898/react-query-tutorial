@@ -14,11 +14,13 @@ export default function RQSuperHeroesPage() {
     console.log("데이터 fetching이 실패한 이후에 실행되는 Perform", error);
   };
 
-  const { isLoading, data, error, isFetching, refetch } = useSuperHeroesData(
-    onSuccess,
-    onError
-  );
-
+  const {
+    isLoading,
+    data: heroData,
+    error,
+    isFetching,
+  } = useSuperHeroesData(onSuccess, onError);
+  console.log(heroData);
   const { mutate: addHero } = useAddSuperHeroesData();
 
   const handleAddHeroClick = () => {
@@ -50,8 +52,7 @@ export default function RQSuperHeroesPage() {
         />
         <button onClick={handleAddHeroClick}>Add Hero</button>
       </div>
-      <button onClick={() => refetch()}>Fetch heroes</button>
-      {data?.map((hero) => (
+      {heroData?.map((hero) => (
         <div key={hero.id}>
           <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
         </div>
