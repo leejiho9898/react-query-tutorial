@@ -27,14 +27,27 @@ export const useSuperHeroesData = (onSuccess: any, onError: any) => {
 export const useAddSuperHeroesData = () => {
   const queryClient = useQueryClient();
   return useMutation(addSuperHero, {
-    onSuccess: (data) => {
-      queryClient.setQueryData<any>("super-heroes", (oldData: any) => {
-        return {
-          ...oldData,
-          newData: [...oldData, data],
-        };
-      });
-      queryClient.invalidateQueries("super-heroes");
+    // onSuccess: (data) => {
+    // queryClient.setQueryData<any>("super-heroes", (oldData: any) => {
+    //   return {
+    //     ...oldData,
+    //     newData: [...oldData, data],
+    //   };
+    // });
+    // queryClient.invalidateQueries("super-heroes");
+
+    // },
+    onMutate: async (newHero) => {
+      await queryClient.cancelQueries("super-heroes");
+
+      const previousHeroData = queryClient.getQueryData<Hero[]>("super-heroes");
+      if (previousHeroData) {
+        queryClient.setQueryData<Hero[]>("super-heroes", [
+          ...previousHeroData,
+          { id: previousHeroData.length + 1, ...newHero },
+        ]);
+      }
+      return { previousHeroData };
     },
   });
 };
